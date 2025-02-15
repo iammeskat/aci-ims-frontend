@@ -1,7 +1,7 @@
 import { getCookie } from '@/utils/session';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-const baseUrl = "http://localhost:3001/api";
+const baseUrl = NEXT_PUBLIC_API_BASE_URL || "http://localhost:3001/api";
 
 const baseQuery = fetchBaseQuery({
 	baseUrl,
