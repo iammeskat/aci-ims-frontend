@@ -5,6 +5,7 @@ const baseUrl = "http://localhost:3001/api";
 export const baseApi = createApi({
 	reducerPath: 'api',
 	baseQuery: fetchBaseQuery({ baseUrl }),
+	tagTypes: ["PROFILE"],
 	endpoints: () => ({}),
 });
 

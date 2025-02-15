@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import BtnLogout from "../btn-logout";
 import Logo from "../logo";

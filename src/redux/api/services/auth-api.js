@@ -1,19 +1,27 @@
-import { toQueryString } from "src/utils/helper";
 import baseApi from "../base-api";
 
 export const authApi = baseApi.injectEndpoints({
 	endpoints: (builder) => ({
-		fetchCourses: builder.query({
-			query: (query = {}) => `/course${toQueryString(query)}`,
-			transformResponse: (res) => res.data,
-			providesTags: ['USER'],
+		login: builder.mutation({
+			query: (payload) => ({
+				url: `/auth/login`,
+				method: 'POST',
+				body: payload,
+			}),
 		}),
-		fetchUserById: builder.query({
-			query: (id) => `/users/${id}`,
-			providesTags: ['USER'],
+		fetchProfile: builder.query({
+			query: (id) => `/auth/profile`,
+			providesTags: ['PROFILE'],
+		}),
+		updateProfile: builder.mutation({
+			query: (payload) => ({
+				url: `/auth/profile`,
+				method: 'PATCH',
+				body: payload,
+			}),
 		}),
 	}),
 	// overrideExisting: false,
 });
 
-export const { useFetchCoursesQuery, useFetchUserByIdQuery } = authApi;
+export const { useLoginMutation, useFetchProfileQuery, useUpdateProfileMutation } = authApi;

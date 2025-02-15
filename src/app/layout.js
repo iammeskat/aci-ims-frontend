@@ -1,4 +1,5 @@
 import ReduxProvider from "@/redux/redux-provider";
+import { Toaster } from "react-hot-toast";
 import "./globals.css";
 
 export const metadata = {
@@ -13,6 +14,7 @@ export default function RootLayout({ children }) {
 				<ReduxProvider>
 					{children}
 				</ReduxProvider>
+				<Toaster />
 			</body>
 		</html>
 	);
