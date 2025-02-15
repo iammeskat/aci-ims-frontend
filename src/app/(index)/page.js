@@ -1,7 +1,7 @@
-import BoardView from "@/views/board-view";
+import ProductBoardView from "@/views/product-board-view";
 
 export default function HomePage() {
 	return (
-		<BoardView />
+		<ProductBoardView />
 	);
 }

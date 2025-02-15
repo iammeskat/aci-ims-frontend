@@ -23,6 +23,7 @@ export default {
 			},
 			screens: {
 				"s456": "456px",
+				"mdx": "850px",
 			},
 		},
 	},

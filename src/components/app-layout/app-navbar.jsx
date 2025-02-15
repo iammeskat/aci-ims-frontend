@@ -16,7 +16,7 @@ const AppNavbar = () => {
 	];
 
 	return (
-		<div className="sticky top-0 flex items-center  h-14 bg-white border-b">
+		<div className="sticky top-0 flex items-center  h-14 bg-white border-b z-10">
 			<div className="container ">
 				<div className="w-full flex items-center justify-between ">
 					<Logo responsive />

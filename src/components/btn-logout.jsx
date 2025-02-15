@@ -1,4 +1,5 @@
 import { removeUserCookies } from "@/utils/session";
+import Button from "./core/button";
 
 const BtnLogout = () => {
 
@@ -8,12 +9,13 @@ const BtnLogout = () => {
 	}
 
 	return (
-		<button
+		<Button
+			text="Logout"
 			onClick={handleLogout}
-			className="w-full h-6 px-6 border flex justify-center items-center rounded-full text-sm font-medium text-white bg-blue-700 hover:bg-blue-600 transition-colors duration-300"
-		>
-			Logout
-		</button>
+			outlined
+			rounded
+			small
+		/>
 	)
 }
 
