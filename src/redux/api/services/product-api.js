@@ -21,6 +21,14 @@ export const ProductApi = baseApi.injectEndpoints({
 			}),
 		}),
 
+		addProductByBarcode: builder.mutation({
+			query: (payload) => ({
+				url: `/product/add-by-barcode`,
+				method: 'POST',
+				body: payload,
+			}),
+		}),
+
 		updateProduct: builder.mutation({
 			query: ({ id, payload }) => ({
 				url: `/product/${id}`,
@@ -45,5 +53,6 @@ export const {
 	useFetchProductQuery,
 	useCreateProductMutation,
 	useUpdateProductMutation,
-	useDeleteProductMutation
+	useDeleteProductMutation,
+	useAddProductByBarcodeMutation,
 } = ProductApi;

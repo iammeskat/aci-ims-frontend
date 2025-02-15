@@ -12,7 +12,6 @@ const useCategoryList = (count = 100) => {
 	}, [data]);
 
 	const moveProduct = (productId, fromCategoryId, toCategoryId) => {
-		console.log({ productId, fromCategoryId, toCategoryId })
 		setCategories((prevCategories) => {
 			const newCategories = prevCategories.map((category) => ({
 				...category,
@@ -28,7 +27,7 @@ const useCategoryList = (count = 100) => {
 				if (productIndex !== -1) {
 					const [movedProduct] = fromCategory.products.splice(productIndex, 1);
 					const updatedProduct = { ...movedProduct, category: toCategoryId };
-					toCategory.products.push(updatedProduct);
+					toCategory.products.unshift(updatedProduct);
 					updateProduct({ id: productId, payload: { category: toCategoryId } })
 				}
 			}

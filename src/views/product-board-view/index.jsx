@@ -37,8 +37,11 @@ const ProductBoardView = () => {
 				title="Add Product by Scanning Barcode"
 				opened={modal === "create-product"}
 				closeModal={() => setModal(null)}
+				footer={false}
 			>
-				<AddProduct />
+				<AddProduct
+					onCancel={() => setModal(null)}
+				/>
 			</Modal>
 
 			<Modal
