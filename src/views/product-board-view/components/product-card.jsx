@@ -41,10 +41,6 @@ const ProductCard = ({
 				} ${isHovered ? "scale-105" : "scale-100"}`}
 			onMouseEnter={() => setIsHovered(true)}
 			onMouseLeave={() => setIsHovered(false)}
-			// style={{
-			// 	transform: `scale(${isDragging ? 0.95 : 1})`,
-			// 	transition: "transform 0.2s ease-in-out, opacity 0.2s ease-in-out",
-			// }}
 		>
 			<GripVertical className="size-4 -ml-2" />
 			<div>

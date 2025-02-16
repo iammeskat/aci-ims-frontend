@@ -1,16 +1,16 @@
-import { useDeleteCategoryMutation } from "@/redux/api/services/category-api";
+import Button from "@/components/core/button";
+import { useDeleteUserMutation } from "@/redux/api/services/user-api";
 import toast from "react-hot-toast";
-import Button from "./core/button";
 
-const DeleteCategory = ({
+const DeleteUser = ({
 	data = {},
 	onCancel = () => { },
 }) => {
-	const [deleteCategory, { isLoading }] = useDeleteCategoryMutation();
+	const [deleteUser, { isLoading }] = useDeleteUserMutation();
 
 	const handleDelete = async (e) => {
 		e.preventDefault();
-		const res = await deleteCategory(data._id);
+		const res = await deleteUser(data._id);
 		if (res?.data) {
 			toast.success(res.data.msg);
 			onCancel();
@@ -44,4 +44,4 @@ const DeleteCategory = ({
 	)
 }
 
-export default DeleteCategory
+export default DeleteUser

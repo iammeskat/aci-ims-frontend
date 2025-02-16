@@ -10,8 +10,6 @@ const BarcodeScanner = ({ setBarcode = () => { } }) => {
 	const [isScanning, setIsScanning] = useState(false);
 	const fileInputRef = useRef(null);
 
-	console.log({ imgUrl })
-
 	const handleImageUpload = async (event) => {
 		const file = event.target.files?.[0];
 		if (!file) return;

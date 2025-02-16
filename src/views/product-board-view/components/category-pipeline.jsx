@@ -53,7 +53,7 @@ const CategoryPipeline = ({
 				style={{ scrollbarWidth: "thin" }}
 			>
 				{isOver && <ProductCardSkeleton />}
-				{products.map((product) => (
+				{products.map((product,indx) => (
 					<ProductCard
 						key={product._id}
 						data={product}

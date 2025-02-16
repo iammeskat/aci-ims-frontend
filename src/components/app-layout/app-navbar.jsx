@@ -5,13 +5,13 @@ import Logo from "../logo";
 
 const AppNavbar = () => {
 	const navItems = [
+		// {
+		// 	path: "#",
+		// 	label: "Product"
+		// },
 		{
-			path: "#",
-			label: "Product"
-		},
-		{
-			path: "#",
-			label: "User"
+			path: "/users",
+			label: "User Management"
 		},
 	];
 
@@ -21,8 +21,8 @@ const AppNavbar = () => {
 				<div className="w-full flex items-center justify-between ">
 					<Logo responsive />
 					<ul className="flex items-center gap-4">
-						{navItems.map((item) => (
-							<li key={item.path}>
+						{navItems.map((item, indx) => (
+							<li key={indx}>
 								<NavItem
 									path={item.path}
 									label={item.label}
@@ -42,7 +42,7 @@ const AppNavbar = () => {
 const NavItem = ({ label = "", path = "#" }) => (
 	<Link href={path}>
 		<span
-			className="uppercase cursor-not-allowed text-sm font-medium text-slate-500 hover:Xtext-slate-900 transition-colors duration-300"
+			className="uppercase  text-sm font-medium text-slate-500 hover:text-slate-900 transition-colors duration-300"
 			title="Coming soon"
 		>
 			{label}

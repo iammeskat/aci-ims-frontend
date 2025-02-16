@@ -8,7 +8,7 @@ const DeleteProduct = ({
 	removeProduct = () => { }
 }) => {
 	const [deleteCategory, { isLoading }] = useDeleteProductMutation();
-	console.log({ data })
+
 	const handleDelete = async (e) => {
 		e.preventDefault();
 		const res = await deleteCategory(data._id);

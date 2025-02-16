@@ -20,7 +20,7 @@ const CategoryKanbanBoard = ({
 				{isLoading &&
 					<SkeletonCatPipeline count={5} />
 				}
-				{categories.map((category) => (
+				{categories.map((category,indx) => (
 					<CategoryPipeline
 						key={category._id}
 						data={category}
