@@ -1,17 +1,23 @@
 import { useAddProductByBarcodeMutation } from "@/redux/api/services/product-api";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
 import BarcodeScanner from "./barcode-scanner";
 import Button from "./core/button";
 
 
-const AddProduct = ({ onCancel = () => { } }) => {
+const AddProduct = ({
+	onCancel = () => { },
+	onAddProduct = () => { }
+}) => {
 	const [barcode, setBarcode] = useState(null);
 	const [addProduct, { isLoading }] = useAddProductByBarcodeMutation();
+	const dispatch = useDispatch();
 
 	const handleAdd = async () => {
 		const res = await addProduct({ barcode });
 		if (res?.data) {
+			onAddProduct(res.data.data)
 			toast.success(res.data.msg || "Success");
 			onCancel();
 		} else {

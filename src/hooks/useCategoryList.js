@@ -37,11 +37,28 @@ const useCategoryList = (count = 100) => {
 
 	};
 
+	const addProduct = (newProduct) => {
+		setCategories((prevCategories) => {
+			const newCategories = prevCategories.map((category) => ({
+				...category,
+				products: category.products.map((product) => ({ ...product })),
+			}));
+
+			const toCategory = newCategories.find((c) => (c.is_super && c.title == "uncategorized"));
+			if (toCategory)
+				toCategory.products.unshift(newProduct);
+
+			return newCategories;
+		});
+
+	}
+
 
 	return ({
 		categories,
 		setCategories,
 		moveProduct,
+		addProduct,
 		isLoading,
 		isFetching,
 		isMoving

@@ -13,7 +13,7 @@ import ProductBoardHeader from "./components/product-board-header"
 const ProductBoardView = () => {
 	const [modal, setModal] = useState(null);
 	const [selectedItem, setSelectedItem] = useState(null)
-	const { categories, setCategories, moveProduct, isLoading } = useCategoryList();
+	const { categories, setCategories, moveProduct, addProduct, isLoading } = useCategoryList();
 
 
 	const handleAction = (action, item) => {
@@ -41,6 +41,7 @@ const ProductBoardView = () => {
 			>
 				<AddProduct
 					onCancel={() => setModal(null)}
+					onAddProduct={addProduct}
 				/>
 			</Modal>
 
