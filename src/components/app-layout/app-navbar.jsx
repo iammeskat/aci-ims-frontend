@@ -6,11 +6,11 @@ import Logo from "../logo";
 const AppNavbar = () => {
 	const navItems = [
 		{
-			path: "/products",
+			path: "#",
 			label: "Product"
 		},
 		{
-			path: "/users",
+			path: "#",
 			label: "User"
 		},
 	];
@@ -41,7 +41,10 @@ const AppNavbar = () => {
 
 const NavItem = ({ label = "", path = "#" }) => (
 	<Link href={path}>
-		<span className="uppercase text-sm font-medium text-slate-500 hover:text-slate-900 transition-colors duration-300">
+		<span
+			className="uppercase cursor-not-allowed text-sm font-medium text-slate-500 hover:Xtext-slate-900 transition-colors duration-300"
+			title="Coming soon"
+		>
 			{label}
 		</span>
 	</Link>
