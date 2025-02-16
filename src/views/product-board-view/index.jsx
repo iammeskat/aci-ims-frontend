@@ -1,13 +1,10 @@
 "use client"
 
-import AddProduct from "@/components/add-product"
-import CreateCategory from "@/components/create-category"
-import DeleteCategory from "@/components/delete-category"
-import Modal from "@/components/modal"
 import useCategoryList from "@/hooks/useCategoryList"
 import { useState } from "react"
 import CategoryKanbanBoard from "./components/categoy-kanban-board"
 import ProductBoardHeader from "./components/product-board-header"
+import ProductCatModals from "./components/product-cat-modals"
 
 
 const ProductBoardView = () => {
@@ -33,41 +30,13 @@ const ProductBoardView = () => {
 				isLoading={isLoading}
 			/>
 
-			<Modal
-				title="Add Product by Scanning Barcode"
-				opened={modal === "create-product"}
-				closeModal={() => setModal(null)}
-				footer={false}
-			>
-				<AddProduct
-					onCancel={() => setModal(null)}
-					onAddProduct={addProduct}
-				/>
-			</Modal>
-
-			<Modal
-				title={modal == "create-category" ? "Create Category" : "Edit Category"}
-				opened={["create-category", "edit-category"].includes(modal)}
-				closeModal={() => setModal(null)}
-				footer={false}
-			>
-				<CreateCategory
-					data={selectedItem}
-					onCancel={() => setModal(null)}
-					setCategories={setCategories}
-				/>
-			</Modal>
-			<Modal
-				title="Delete Category"
-				opened={modal === "delete-category"}
-				closeModal={() => setModal(null)}
-				footer={false}
-			>
-				<DeleteCategory
-					data={selectedItem}
-					onCancel={() => setModal(null)}
-				/>
-			</Modal>
+			<ProductCatModals
+				modal={modal}
+				setModal={setModal}
+				setCategories={setCategories}
+				data={selectedItem}
+				addProduct={addProduct}
+			/>
 		</div>
 	)
 }
