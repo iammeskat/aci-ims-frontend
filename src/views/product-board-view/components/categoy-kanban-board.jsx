@@ -1,6 +1,6 @@
 "use client"
 
-import DragLayer from "@/components/DragLayer"
+import DragLayer from "@/components/drag-layer"
 import SkeletonCatPipeline from "@/components/skeleton-cat-pipeline"
 import { DndProvider } from "react-dnd"
 import { HTML5Backend } from "react-dnd-html5-backend"

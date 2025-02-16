@@ -1,5 +1,6 @@
 "use client"
 
+import { getElementWidthById } from "@/utils/helpers";
 import { GripVertical, TrashIcon } from "lucide-react";
 import { useState } from "react";
 import { useDrag } from "react-dnd";
@@ -15,7 +16,13 @@ const ProductCard = ({
 
 	const [{ isDragging }, drag] = useDrag({
 		type: "product",
-		item: { id, categoryId, description, barcode },
+		item: {
+			id,
+			categoryId,
+			description,
+			barcode,
+			width: getElementWidthById(`${categoryId}_${id}`)
+		},
 		collect: (monitor) => {
 			return ({
 				isDragging: !!monitor.isDragging(),
@@ -24,17 +31,20 @@ const ProductCard = ({
 	});
 
 
+
+
 	return (
 		<div
 			ref={drag}
+			id={`${categoryId}_${id}`}
 			className={`relative group flex gap-1 bg-white p-3 w-full rounded border  cursor-move transition-all duration-200 ${isDragging ? "opacity-50 scale-95" : ""
 				} ${isHovered ? "scale-105" : "scale-100"}`}
 			onMouseEnter={() => setIsHovered(true)}
 			onMouseLeave={() => setIsHovered(false)}
-			style={{
-				transform: `scale(${isDragging ? 0.95 : 1})`,
-				transition: "transform 0.2s ease-in-out, opacity 0.2s ease-in-out",
-			}}
+			// style={{
+			// 	transform: `scale(${isDragging ? 0.95 : 1})`,
+			// 	transition: "transform 0.2s ease-in-out, opacity 0.2s ease-in-out",
+			// }}
 		>
 			<GripVertical className="size-4 -ml-2" />
 			<div>

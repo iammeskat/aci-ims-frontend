@@ -8,3 +8,9 @@ export const toQueryStrings = (object) => {
 				.join("&")
 		);
 };
+
+
+
+export const getElementWidthById = (eleId) => (
+	document.getElementById(eleId)?.clientWidth
+)
