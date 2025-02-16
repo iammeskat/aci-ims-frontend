@@ -58,6 +58,7 @@ const CategoryPipeline = ({
 						key={product._id}
 						data={product}
 						categoryId={id}
+						onDelete={() => handleAction("delete-product", product)}
 					/>
 				))}
 			</div>

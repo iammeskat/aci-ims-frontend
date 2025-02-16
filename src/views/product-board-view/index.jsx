@@ -10,7 +10,7 @@ import ProductCatModals from "./components/product-cat-modals"
 const ProductBoardView = () => {
 	const [modal, setModal] = useState(null);
 	const [selectedItem, setSelectedItem] = useState(null)
-	const { categories, setCategories, moveProduct, addProduct, isLoading } = useCategoryList();
+	const { categories, setCategories, moveProduct, addProduct, removeProduct, isLoading } = useCategoryList();
 
 
 	const handleAction = (action, item) => {
@@ -36,6 +36,7 @@ const ProductBoardView = () => {
 				setCategories={setCategories}
 				data={selectedItem}
 				addProduct={addProduct}
+				removeProduct={removeProduct}
 			/>
 		</div>
 	)

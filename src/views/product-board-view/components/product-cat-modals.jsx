@@ -1,13 +1,15 @@
 import AddProduct from "@/components/add-product"
 import CreateCategory from "@/components/create-category"
 import DeleteCategory from "@/components/delete-category"
+import DeleteProduct from "@/components/delete-product"
 import Modal from "@/components/modal"
 
 const titles = {
 	"crete-product": "Add Product by Scanning Barcode",
 	"create-category": "Create Category",
 	"edit-category": "Edit Category",
-	"delete-category": "Delete Category"
+	"delete-category": "Delete Category",
+	"delete-product": "Delete Product"
 }
 
 const ProductCatModals = ({
@@ -15,7 +17,8 @@ const ProductCatModals = ({
 	modal,
 	setModal = () => { },
 	setCategories = () => { },
-	addProduct = () => { }
+	addProduct = () => { },
+	removeProduct = () => { }
 }) => {
 
 	const renderModal = () => {
@@ -41,6 +44,14 @@ const ProductCatModals = ({
 					<DeleteCategory
 						data={data}
 						onCancel={() => setModal(null)}
+					/>
+				);
+			case "delete-product":
+				return (
+					<DeleteProduct
+						data={data}
+						onCancel={() => setModal(null)}
+						removeProduct={removeProduct}
 					/>
 				);
 

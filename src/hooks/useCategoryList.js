@@ -53,12 +53,30 @@ const useCategoryList = (count = 100) => {
 
 	}
 
+	const removeProduct = (product = {}) => {
+
+		setCategories((prevCategories) => {
+			const newCategories = prevCategories.map((category) => ({
+				...category,
+				products: category.products.map((product) => ({ ...product })),
+			}));
+
+			const toCategory = newCategories.find((c) => (c._id == product.category));
+			if (toCategory)
+				toCategory.products = toCategory.products.filter(item => (item._id != product._id));
+
+			return newCategories;
+		});
+
+	}
+
 
 	return ({
 		categories,
 		setCategories,
 		moveProduct,
 		addProduct,
+		removeProduct,
 		isLoading,
 		isFetching,
 		isMoving
