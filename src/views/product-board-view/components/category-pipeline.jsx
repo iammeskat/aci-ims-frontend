@@ -19,20 +19,28 @@ const CategoryPipeline = ({
 		accept: "product",
 		drop: (item) => {
 			if (item.categoryId !== id) {
-				moveProduct(item.id, item.categoryId, id)
+				moveProduct(item.id, item.categoryId, id);
 			}
 		},
-		hover: () => setIsOver(true),
-		collect: (monitor) => ({
-			isOver: !!monitor.isOver(),
-		}),
-	})
+		hover: (item) => {
+			if (item.categoryId != id)
+				setIsOver(true);
+		},
+		collect: (monitor) => {
+			const item = monitor.getItem();
+			if (item?.categoryId != id) {
+				const isOver = monitor.isOver();
+				setIsOver(isOver);
+				return { isOver };
+			}
+		},
+	});
 
 
 	return (
 		<div
 			ref={drop}
-			className={`w-full h-[450px] pb-2 rounded border border-slate-300 bg-sky-50 overflow-hidden transition-all duration-200 ${isOver ? "bg-gray-200" : ""}`}
+			className={`w-full h-[450px] pb-2 rounded border border-slate-300 bg-sky-50 overflow-hidden transition-all duration-200 ${isOver ? "bg-gray-200 ring-1 ring-blue-600" : ""}`}
 		>
 			<CatPipelineHeader
 				title={title}
@@ -41,9 +49,10 @@ const CategoryPipeline = ({
 				hasProducts={products.length > 0}
 			/>
 			<div
-				className="h-[calc(100%-25px)] p-2 space-y-2 overflow-y-auto overflow-x-hidden"
+				className="relative h-[calc(100%-25px)] p-2 space-y-2 overflow-y-auto overflow-x-hidden"
 				style={{ scrollbarWidth: "thin" }}
 			>
+				{isOver && <ProductCardSkeleton />}
 				{products.map((product) => (
 					<ProductCard
 						key={product._id}
@@ -83,6 +92,12 @@ const CatPipelineHeader = ({ title, onAction, isSuper, hasProducts }) => (
 				<EllipsisVerticalIcon className="absolute right-2 size-4 group-hover:hidden" />
 			</>
 		}
+	</div>
+);
+
+const ProductCardSkeleton = () => (
+	<div className="sticky top-0 z-10 w-full border-b border-dashed border-slate-400 pb-2 bg-sky-50">
+		<div className="w-full h-[62px] border border-slate-400 bg-slate-200 rounded" />
 	</div>
 )
 

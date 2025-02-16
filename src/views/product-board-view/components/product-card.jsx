@@ -14,10 +14,14 @@ const ProductCard = ({
 	const [{ isDragging }, drag] = useDrag({
 		type: "product",
 		item: { id, categoryId, description, barcode },
-		collect: (monitor) => ({
-			isDragging: !!monitor.isDragging(),
-		}),
-	})
+		collect: (monitor) => {
+			// console.log({ monitor })
+			return ({
+				isDragging: !!monitor.isDragging(),
+			})
+		},
+	});
+
 
 	return (
 		<div
