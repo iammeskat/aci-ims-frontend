@@ -1,15 +1,19 @@
 "use client"
 
-import { useState } from "react"
-import { useDrag } from "react-dnd"
+import { useState } from "react";
+import { useDrag } from "react-dnd";
 
 
-const ProductCard = ({ id, content, categoryId }) => {
+const ProductCard = ({
+	data = {},
+	categoryId = ""
+}) => {
+	const { _id: id, description, barcode } = data;
 	const [isHovered, setIsHovered] = useState(false)
 
 	const [{ isDragging }, drag] = useDrag({
 		type: "product",
-		item: { id, categoryId, content },
+		item: { id, categoryId, description, barcode },
 		collect: (monitor) => ({
 			isDragging: !!monitor.isDragging(),
 		}),
@@ -18,7 +22,7 @@ const ProductCard = ({ id, content, categoryId }) => {
 	return (
 		<div
 			ref={drag}
-			className={`bg-white p-3 rounded border  cursor-move transition-all duration-200 ${isDragging ? "opacity-50 scale-95" : ""
+			className={`bg-white p-3 w-full rounded border  cursor-move transition-all duration-200 ${isDragging ? "opacity-50 scale-95" : ""
 				} ${isHovered ? "scale-105" : "scale-100"}`}
 			onMouseEnter={() => setIsHovered(true)}
 			onMouseLeave={() => setIsHovered(false)}
@@ -27,7 +31,12 @@ const ProductCard = ({ id, content, categoryId }) => {
 				transition: "transform 0.2s ease-in-out, opacity 0.2s ease-in-out",
 			}}
 		>
-			{content}
+			<p className="text-sm font-medium">
+				{description}
+			</p>
+			<p className="text-xs">
+				Code: {barcode}
+			</p>
 		</div>
 	)
 }

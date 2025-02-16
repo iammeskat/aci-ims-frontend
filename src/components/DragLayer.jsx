@@ -1,7 +1,7 @@
 "use client"
 
 import { useDragLayer } from "react-dnd"
-const layerStyles= {
+const layerStyles = {
 	position: "fixed",
 	pointerEvents: "none",
 	zIndex: 100,
@@ -9,7 +9,7 @@ const layerStyles= {
 	top: 0,
 	width: "100%",
 	height: "100%",
- }
+}
 
 function getItemStyles(initialOffset, currentOffset) {
 	if (!initialOffset || !currentOffset) {
@@ -44,7 +44,12 @@ export default function DragLayer() {
 		<div style={layerStyles}>
 			<div style={getItemStyles(initialOffset, currentOffset)}>
 				<div className="bg-white p-3 rounded shadow border-2 border-blue-500 w-64 transition-transform duration-200 ease-in-out">
-					{item.content}
+					<p className="text-sm font-medium">
+						{item.description}
+					</p>
+					<p className="text-xs">
+						Code: {item.barcode}
+					</p>
 				</div>
 			</div>
 		</div>

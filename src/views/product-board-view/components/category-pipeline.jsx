@@ -38,16 +38,16 @@ const CategoryPipeline = ({
 				title={title}
 				isSuper={is_super}
 				onAction={action => handleAction(action, { _id: id, title })}
+				hasProducts={products.length > 0}
 			/>
 			<div
 				className="h-[calc(100%-25px)] p-2 space-y-2 overflow-y-auto overflow-x-hidden"
 				style={{ scrollbarWidth: "thin" }}
 			>
-				{products.map((card) => (
+				{products.map((product) => (
 					<ProductCard
-						key={card._id + Math.random()}
-						id={card._id}
-						content={card.description}
+						key={product._id}
+						data={product}
 						categoryId={id}
 					/>
 				))}
@@ -57,7 +57,7 @@ const CategoryPipeline = ({
 }
 
 
-const CatPipelineHeader = ({ title, onAction, isSuper }) => (
+const CatPipelineHeader = ({ title, onAction, isSuper, hasProducts }) => (
 	<div className={`group h-8 px-2 border-b border-slate-300 bg-slate-100 flex items-center justify-center transition-all duration-300 relative ${isSuper ? "" : "hover:justify-between"}`}>
 		<h2 className="font-medium capitalize">
 			{title}
@@ -73,7 +73,9 @@ const CatPipelineHeader = ({ title, onAction, isSuper }) => (
 					</button>
 					<button
 						onClick={() => onAction("delete-category")}
-						className="size-6 border text-xs rounded-full flex items-center justify-center hover:border-red-500 hover:text-red-500 hover:bg-red-100 transition-colors duration-300"
+						className={`size-6 border text-xs rounded-full flex items-center justify-center  transition-colors duration-300 ${hasProducts ? "cursor-not-allowed opacity-60" : "hover:border-red-500 hover:text-red-500 hover:bg-red-100"}`}
+						disabled={hasProducts}
+						title={hasProducts ? "Cannot delete category with existing products" : ""}
 					>
 						<TrashIcon size={16} />
 					</button>
